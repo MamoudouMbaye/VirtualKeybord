@@ -1,68 +1,50 @@
-const chk = document.getElementById('chk');
+body {
+    background-image: #FFF;
+    transition: background 0.2s linear;
+}
 
-chk.addEventListener('change', () => {
-    document.body.classList.toggle('dark');
-});
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
 
-window.addEventListener("load", function() {
-    const buttons = document.querySelectorAll(".key");
-    const textOuput = document.querySelector(".ecran1");
-    const capsLock = document.querySelector('.capsled');
-    const capsLedOn = document.querySelector('.capsled-on');
-    const shift = document.querySelector('.shift');
-    let isCpasLock = false;
-    let isShift = false;
-    let isAzerty = true;
+.label {
+    background-color: rgba(0, 0, 0, 0.90);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    height: 20px;
+    width: 40px;
+    transform: scale(1.5);
+    align-self: center;
+}
 
-    const minAzerty = ["²", "&", "é", '"', "'", "(", "-", "è", "_", "ç", "à", ")", "=", "Delete", "Tab", "a", "z", "e", "r", "t", "y", "u", "i", "o", "p", "^", "$", "q", "s", "d", "f", "g", "h", "j", "k", "l", "m", "ù", "*", "Enter", "<", "w", "x", "c", "v", "b", "n", ",", ";", ":", "!"];
+.label .ball {
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: 15px;
+    width: 15px;
+    transform: translateX(0px);
+    transition: transform 0.2s linear;
+}
 
-    const majAzerty = ["²", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "°", "+", "Delete", "Tab", "A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", "¨", "£", "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", "%", "µ", "Enter", "<", "W", "X", "C", "V", "B", "N", "?", ".", "/", "§"];
+.checkbox:checked+.label .ball {
+    transform: translateX(24px);
+}
 
+.fa-moon {
+    color: #f1c40f;
+    font-size: 10px;
+}
 
-    // caps Lock
-    capsLock.addEventListener("click", function() {
-        isCpasLock = !isCpasLock;
-        capsLocked(isCpasLock, capsLedOn);
-    });
-
-    // Shift
-
-    shift.addEventListener("click", function() {
-        isShift = !isShift;
-        capsLocked(isShift, shiftCircle)
-    });
-
-
-
-    // Onclick
-
-    buttons.forEach(button =>
-        button.addEventListener("click", function() {
-            switch (this.value) {
-                case "SPACE":
-                    textOuput.value += " ";
-                    break;
-                case "Delete":
-                    textOuput.value = textOuput.value.substring(0, textOuput.value.length - 1);
-                    break;
-                case "Enter":
-                    textOuput.value += "\n";
-                    break;
-                case "Tab":
-                    textOuput.value += "  ";
-                    break;
-                default:
-                    if (isShift === true) {
-                        isShift = !isShift;
-                        textOuput.value += this.value;
-                        capsLocked(isShift, shiftCircle)
-                    } else {
-                        textOuput.value += this.value;
-                    }
-            }
-
-        }))
-
-
-
-})
+.fa-sun {
+    color: #f39c12;
+    font-size: 8px;
+}
